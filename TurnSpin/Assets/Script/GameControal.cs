@@ -63,6 +63,16 @@ public class GameControal : MonoBehaviour {
 	}
 
 	void Start () {
+		Screen.orientation=ScreenOrientation.LandscapeRight;
+		Screen.orientation=ScreenOrientation.AutoRotation;
+
+		Screen.autorotateToLandscapeLeft=true;
+
+		Screen.autorotateToLandscapeRight=true;
+
+		Screen.autorotateToPortrait=false;
+
+		Screen.autorotateToPortraitUpsideDown=false;
 		ButtomText = GameObject.FindWithTag ("UItag");
 		Go=GameObject.FindWithTag ("Tag1");
 		lastInterval = Time.realtimeSinceStartup;
@@ -142,22 +152,29 @@ public class GameControal : MonoBehaviour {
 		form.AddField ("METHOD","spin");
 		form.AddField ("PARAMS","test");
 		WWW www = new WWW (url, form);
+		Debug.Log ("ok4 "+Time.time);
 		yield return www;
+		Debug.Log ("ok7 "+Time.time);
 		if (www.error == null) {
 			MyData.Clear ();
 
 			//Debug.Log ("Success"+www.text);
 			JsonData jsonTargets = JsonMapper.ToObject (www.text);
 			//Debug.Log (jsonTargets["CURRENT_ROLL"]);
+			//Debug.Log ("ok1 "+Time.time);
 			for (int i = 0; i < jsonTargets ["CURRENT_ROLL"].Count; i++) {
 				//Debug.Log ("add: "+jsonTargets ["CURRENT_ROLL"][i].ToString());
 				//AllImages[i].NowImageis=jsonTargets ["CURRENT_ROLL"] [i].ToString ();
+				//Debug.Log ("ok2 "+Time.time);
 				AllImages[i].StopImagePos (jsonTargets ["CURRENT_ROLL"] [i].ToString ());
 				//Go.transform.GetChild (i).GetChild (0).GetComponent<MyImage> ().NowImageis = jsonTargets ["CURRENT_ROLL"] [i].ToString ();
 				//Go.transform.GetChild (i).GetChild (0).GetComponent<MyImage> ().StopImagePos ();
+				//Debug.Log ("ok3 "+Time.time);
 				MyData.Add(jsonTargets ["CURRENT_ROLL"][i].ToString());
 				//Debug.Log ("give value");
+				//Debug.Log ("ok4 "+Time.time);
 			}
+			//Debug.Log ("ok  "+Time.time);
 			SpriteRunend = true;
 		} else {
 			Debug.Log ("error"+www.error);

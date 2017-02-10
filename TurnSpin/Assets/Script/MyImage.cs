@@ -6,18 +6,19 @@ using UnityEngine.UI;
 public class MyImage : MonoBehaviour {
 	
 	public List<Sprite> MyTurnImage=new List<Sprite>();
-	public float TurnSpeed=50.0f;
+	private float TurnSpeed=30.0f;
 	private float RemberTurnSpeed;
 	//轉
-	private float DownSpeed=0.52f;
+	private float DownSpeed=0.105f;
 	public float DownSpeedTime=2.0f;
-	public float RunTime=10.0f;
+	private float RunTime=5.0f;
 	public float StopTime=0;
 	public Vector3 StopPos;
 	// Use this for initialization
 
 	//getImage
 	//private GameObject Buttom;
+	private Sprite NowImg;
 	public string NowImageName="";
 	public string NowImageis{set{NowImageName = value; } get{return NowImageName;}}
 
@@ -72,7 +73,7 @@ public class MyImage : MonoBehaviour {
 
 	public void NowStop(){
 		//StopImagePos ();
-		this.GetComponent<RectTransform> ().localPosition = StopPos -new Vector3(13.0f,-39.75f,0f);
+		this.transform.localPosition = StopPos -new Vector3(13.0f,-39.75f,0f);
 	} 
 
 
@@ -118,9 +119,9 @@ public class MyImage : MonoBehaviour {
 	}
 
 	void RunImage(){
-		if (this.GetComponent<RectTransform> ().localPosition.y <= (TurnSpeed)) {
+		if (this.transform.localPosition.y <= (TurnSpeed)) {
 			//Debug.Log ("重新跑");
-			this.GetComponent<RectTransform> ().localPosition = StartYpos-new Vector3(0.0f,10.0f,0.0f);
+			this.transform.localPosition = StartYpos-new Vector3(0.0f,10.0f,0.0f);
 		}
 		if ((RunTime-StopTime) < DownSpeedTime) {
 			TurnSpeed = TurnSpeed - DownSpeed;
