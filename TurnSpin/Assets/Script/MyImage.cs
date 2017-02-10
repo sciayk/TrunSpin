@@ -8,8 +8,8 @@ public class MyImage : MonoBehaviour {
 	public List<Sprite> MyTurnImage=new List<Sprite>();
 	public float TurnSpeed=50.0f;
 	private float RemberTurnSpeed;
-	//轉多久
-	private float DownSpeed=0.5f;
+	//轉
+	private float DownSpeed=0.52f;
 	public float DownSpeedTime=2.0f;
 	public float RunTime=10.0f;
 	public float StopTime=0;
@@ -18,10 +18,11 @@ public class MyImage : MonoBehaviour {
 
 	//getImage
 	//private GameObject Buttom;
-	private string NowImageName="";
+	public string NowImageName="";
 	public string NowImageis{set{NowImageName = value; } get{return NowImageName;}}
 
 	//圖片使用
+	//private List<MyImage> AllImages2 = new List<MyImage>();
 	private Dictionary<string,Vector3> RemberTurnImagePos=new Dictionary<string, Vector3>();
 	private bool CanTurn=false;
 	public bool ChangeCanTurn{set{CanTurn = value;}}
@@ -33,7 +34,8 @@ public class MyImage : MonoBehaviour {
 	private Vector3 StartYpos;
 	//private Vector3 RectY;
 	void Start () {
-		StartCoroutine (IRandImage ());
+
+		RandImage ();
 		//RandImage ();
 	//	Buttom = GameObject.FindWithTag ("GameControal");
 		RemberTurnSpeed = TurnSpeed;
@@ -73,7 +75,10 @@ public class MyImage : MonoBehaviour {
 		this.GetComponent<RectTransform> ().localPosition = StopPos -new Vector3(13.0f,-39.75f,0f);
 	} 
 
-	public void StopImagePos(){
+
+
+	public void StopImagePos(string SpriteName){
+		NowImageName = SpriteName;
 		StopPos = RemberTurnImagePos [NowImageName];
 //		for (int i = 0; i < this.transform.childCount; i++) {
 //			if ((this.transform.GetChild (i).GetComponent<Image> ().sprite.name) == (NowImageName)) {
@@ -99,7 +104,7 @@ public class MyImage : MonoBehaviour {
 			Imagequeue.Add(MyTurnImage [RemoveSprint]);
 			MyTurnImage.RemoveAt (RemoveSprint);
 		}
-
+		Debug.Log ("RemberSuccess");
 	}
 
 	void NewAgain(){

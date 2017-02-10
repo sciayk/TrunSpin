@@ -47,6 +47,7 @@ public class GameControal : MonoBehaviour {
 	public List<string> MyData=new List<string>();
 	private bool Chicka=true;
 	public bool ChangeChicka{set{Chicka = value; }}
+	private bool SpriteRunend = false;
 	// Use this for initialization
 
 
@@ -97,14 +98,16 @@ public class GameControal : MonoBehaviour {
 				image.ChangeCanTurn = true;
 			}
 		} else{
-			
+			if(SpriteRunend){
 			Chicka = true;
 			ButtomText.GetComponent<Text>().text = Spin;
 //			for (int i = 0; i < Go.transform.childCount; i++) {
 //				Go.transform.GetChild (i).GetChild (0).GetComponent<MyImage> ().StopTime=20.0f;
 //			}
 			foreach (MyImage image in AllImages) {
+				image.NowStop();
 				image.StopTime = 20f;
+			}
 			}
 		}
 	}
@@ -133,6 +136,7 @@ public class GameControal : MonoBehaviour {
 	}
 
 	IEnumerator WaitForPost(){
+		SpriteRunend = false;
 		string url = DataIP;
 		WWWForm form = new WWWForm();
 		form.AddField ("METHOD","spin");
@@ -141,19 +145,22 @@ public class GameControal : MonoBehaviour {
 		yield return www;
 		if (www.error == null) {
 			MyData.Clear ();
+
 			//Debug.Log ("Success"+www.text);
 			JsonData jsonTargets = JsonMapper.ToObject (www.text);
 			//Debug.Log (jsonTargets["CURRENT_ROLL"]);
 			for (int i = 0; i < jsonTargets ["CURRENT_ROLL"].Count; i++) {
 				//Debug.Log ("add: "+jsonTargets ["CURRENT_ROLL"][i].ToString());
-				Go.transform.GetChild (i).GetChild (0).GetComponent<MyImage> ().NowImageis = jsonTargets ["CURRENT_ROLL"] [i].ToString ();
-				Go.transform.GetChild (i).GetChild (0).GetComponent<MyImage> ().StopImagePos ();
+				//AllImages[i].NowImageis=jsonTargets ["CURRENT_ROLL"] [i].ToString ();
+				AllImages[i].StopImagePos (jsonTargets ["CURRENT_ROLL"] [i].ToString ());
+				//Go.transform.GetChild (i).GetChild (0).GetComponent<MyImage> ().NowImageis = jsonTargets ["CURRENT_ROLL"] [i].ToString ();
+				//Go.transform.GetChild (i).GetChild (0).GetComponent<MyImage> ().StopImagePos ();
 				MyData.Add(jsonTargets ["CURRENT_ROLL"][i].ToString());
+				Debug.Log ("give value");
 			}
-
+			SpriteRunend = true;
 		} else {
 			Debug.Log ("error"+www.error);
 		}
-
 	}
 }
