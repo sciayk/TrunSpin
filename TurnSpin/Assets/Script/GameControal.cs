@@ -156,7 +156,7 @@ public class GameControal : MonoBehaviour {
 				//Go.transform.GetChild (i).GetChild (0).GetComponent<MyImage> ().NowImageis = jsonTargets ["CURRENT_ROLL"] [i].ToString ();
 				//Go.transform.GetChild (i).GetChild (0).GetComponent<MyImage> ().StopImagePos ();
 				MyData.Add(jsonTargets ["CURRENT_ROLL"][i].ToString());
-				Debug.Log ("give value");
+				//Debug.Log ("give value");
 			}
 			SpriteRunend = true;
 		} else {
