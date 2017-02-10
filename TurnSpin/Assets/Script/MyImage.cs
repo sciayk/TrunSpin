@@ -104,7 +104,7 @@ public class MyImage : MonoBehaviour {
 			Imagequeue.Add(MyTurnImage [RemoveSprint]);
 			MyTurnImage.RemoveAt (RemoveSprint);
 		}
-		Debug.Log ("RemberSuccess");
+//		Debug.Log ("RemberSuccess");
 	}
 
 	void NewAgain(){
