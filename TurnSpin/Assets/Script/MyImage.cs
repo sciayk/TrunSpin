@@ -126,6 +126,7 @@ public class MyImage : MonoBehaviour {
 		if ((RunTime-StopTime) < DownSpeedTime) {
 			TurnSpeed = TurnSpeed - DownSpeed;
 		}
-		this.gameObject.transform.localPosition = this.gameObject.transform.localPosition - new Vector3( 0,TurnSpeed,0);
+		this.gameObject.transform.Translate (-new Vector3 (0, TurnSpeed, 0) * Time.deltaTime * 25.6f);
+		//this.gameObject.transform.localPosition = this.gameObject.transform.localPosition - new Vector3( 0,TurnSpeed,0);
 	}
 }
