@@ -17,25 +17,25 @@ public class SetMySelfWH : MonoBehaviour {
 	public GameObject Prefab;
 	// Use this for initialization
 	void Start () {
-//		if (SetWidthAndHeight) {
-//			ParentCanvas = this.transform.parent.gameObject;
-//			this.GetComponent<RectTransform> ().sizeDelta = new Vector2 ((ParentCanvas.GetComponent<RectTransform> ().rect.width - reduceWidth), (ParentCanvas.GetComponent<RectTransform> ().rect.height - reduceHeight));
-//		}
-//		if (AutoSetSize) {
-//			this.GetComponent<GridLayoutGroup> ().cellSize = new Vector2 ((ParentCanvas.GetComponent<RectTransform> ().rect.width/(Row+1)), (ParentCanvas.GetComponent<RectTransform> ().rect.height/(Column+1)));
-//		}
-//		TurntableCount = Row*Column;
-////		Debug.Log (TurntableCount - this.transform.childCount);
-//		if (this.transform.childCount != TurntableCount) {
-//			Debug.Log ("數量錯誤");
-////			AddMask ();
-//		}
-////
-//		if(this.GetComponent<GridLayoutGroup> ().cellSize.x < this.GetComponent<GridLayoutGroup> ().cellSize.y){ 
-//			ChangeTurntableWidthHeight (this.GetComponent<GridLayoutGroup> ().cellSize.x);
-//		}else{ 
-//			ChangeTurntableWidthHeight (this.GetComponent<GridLayoutGroup> ().cellSize.y);
-//		}; 
+		if (SetWidthAndHeight) {
+			ParentCanvas = this.transform.parent.gameObject;
+			this.GetComponent<RectTransform> ().sizeDelta = new Vector2 ((ParentCanvas.GetComponent<RectTransform> ().rect.width - reduceWidth), (ParentCanvas.GetComponent<RectTransform> ().rect.height - reduceHeight));
+		}
+		if (AutoSetSize) {
+			this.GetComponent<GridLayoutGroup> ().cellSize = new Vector2 ((ParentCanvas.GetComponent<RectTransform> ().rect.width/(Row+1)), (ParentCanvas.GetComponent<RectTransform> ().rect.height/(Column+1)));
+		}
+		TurntableCount = Row*Column;
+//		Debug.Log (TurntableCount - this.transform.childCount);
+		if (this.transform.childCount != TurntableCount) {
+			Debug.Log ("數量錯誤");
+//			AddMask ();
+		}
+//
+		if(this.GetComponent<GridLayoutGroup> ().cellSize.x < this.GetComponent<GridLayoutGroup> ().cellSize.y){ 
+			ChangeTurntableWidthHeight (this.GetComponent<GridLayoutGroup> ().cellSize.x);
+		}else{ 
+			ChangeTurntableWidthHeight (this.GetComponent<GridLayoutGroup> ().cellSize.y);
+		}; 
 	}
 	
 	// Update is called once per frame

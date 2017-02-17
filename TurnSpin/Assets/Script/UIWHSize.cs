@@ -13,8 +13,8 @@ public class UIWHSize : MonoBehaviour {
 	void Awake(){
 		ParentCanvas = this.transform.parent.gameObject ;
 		ChildImage = this.transform.GetChild (0).gameObject;
-	//	this.GetComponent<RectTransform> ().sizeDelta=new Vector2((ParentCanvas.GetComponent<RectTransform> ().rect.width ),(ParentCanvas.GetComponent<RectTransform> ().rect.height ));
-		//ChildImage.GetComponent<RectTransform> ().sizeDelta = new Vector2 ((this.GetComponent<RectTransform> ().rect.width - reduceWidth), (this.GetComponent<RectTransform> ().rect.height - reduceHeight));
+		this.GetComponent<RectTransform> ().sizeDelta=new Vector2((ParentCanvas.GetComponent<RectTransform> ().rect.width ),(ParentCanvas.GetComponent<RectTransform> ().rect.height ));
+		ChildImage.GetComponent<RectTransform> ().sizeDelta = new Vector2 ((this.GetComponent<RectTransform> ().rect.width - reduceWidth), (this.GetComponent<RectTransform> ().rect.height - reduceHeight));
 	}
 	// Use this for initialization
 	void Start () {

@@ -9,7 +9,7 @@ public class MyImage : MonoBehaviour {
 	private float TurnSpeed=30.0f;
 	private float RemberTurnSpeed;
 	//轉
-	private float DownSpeed=0.105f;
+	private float DownSpeed=0.0015f;
 	public float DownSpeedTime=2.0f;
 	private float RunTime=5.0f;
 	public float StopTime=0;
@@ -25,6 +25,9 @@ public class MyImage : MonoBehaviour {
 	//圖片使用
 	//private List<MyImage> AllImages2 = new List<MyImage>();
 	private Dictionary<string,Vector3> RemberTurnImagePos=new Dictionary<string, Vector3>();
+	private Dictionary<Vector3,GameObject> RemberTurnImageGameObject=new Dictionary<Vector3,GameObject>();
+	//	int TimeStop=17;
+	//int ImageShowNumber1,ImageShowNumber2;
 	private bool CanTurn=false;
 	public bool ChangeCanTurn{set{CanTurn = value;}}
 	public List<Sprite> Imagequeue;
@@ -59,7 +62,7 @@ public class MyImage : MonoBehaviour {
 				bStop = false;
 				TurnSpeed = RemberTurnSpeed;
 				Turn = false;
-				NowStop();
+				//NowStop();
 				GameControal.getControal ().StopOneTurn ();
 
 				//Buttom.GetComponent<GameControal> ().StopOneTurn ();
@@ -73,6 +76,8 @@ public class MyImage : MonoBehaviour {
 
 	public void NowStop(){
 		//StopImagePos ();
+		//RemberTurnImageGameObject[StopPos].SetActive(true);
+		//Debug.Log (RemberTurnImageGameObject[StopPos].name);
 		this.transform.localPosition = StopPos -new Vector3(13.0f,-39.75f,0f);
 	} 
 
@@ -101,6 +106,7 @@ public class MyImage : MonoBehaviour {
 			int RemoveSprint;
 			RemoveSprint = Random.Range (0, MyTurnImage.Count);
 			this.transform.GetChild (TurnTime - i-1).gameObject.GetComponent<Image> ().sprite = MyTurnImage [RemoveSprint];
+			RemberTurnImageGameObject.Add (new Vector3 (0.0f, (-30.0f + (17 - i) * 100.0f), 0.0f), this.transform.GetChild (TurnTime - i - 1).gameObject);
 			RemberTurnImagePos.Add (this.transform.GetChild (TurnTime - i-1).gameObject.GetComponent<Image> ().sprite.name,new Vector3 (0.0f, (-30.0f+(17-i)*100.0f ),0.0f));
 			Imagequeue.Add(MyTurnImage [RemoveSprint]);
 			MyTurnImage.RemoveAt (RemoveSprint);
@@ -119,6 +125,7 @@ public class MyImage : MonoBehaviour {
 	}
 
 	void RunImage(){
+		
 		if (this.transform.localPosition.y <= (TurnSpeed)) {
 			//Debug.Log ("重新跑");
 			this.transform.localPosition = StartYpos-new Vector3(0.0f,10.0f,0.0f);
