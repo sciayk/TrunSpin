@@ -53,7 +53,9 @@ public class GameControal : MonoBehaviour {
 	private bool SpriteRunend = false;
 	// Use this for initialization
 
-
+	//PlayerInfo
+	public Text Money;
+	private int Nowmoney;
 	//Second
 	public bool HaveInternet=false;
 
@@ -108,6 +110,8 @@ public class GameControal : MonoBehaviour {
 		} else {
 			FPSTEXT.gameObject.SetActive (true);
 		}
+
+		//Nowmoney = Money.text;
 		//StartCoroutine (WaitForRequest());
 		//StarButtomtext = ButtomText.text;
 	}
@@ -252,6 +256,14 @@ public class GameControal : MonoBehaviour {
 		} else {
 			StartCoroutine(NoInternet ());
 			Debug.Log ("error"+www.error);
+		}
+	}
+
+	public void MoneyChange(bool WinOrLose,int much){
+		if (WinOrLose) {
+			Nowmoney -= much;
+		}else{
+			Nowmoney += much;	
 		}
 	}
 }
