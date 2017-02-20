@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MyImage : MonoBehaviour {
-	
+	private delegate void ImageRun();
+
 	public List<Sprite> MyTurnImage=new List<Sprite>();
 	private float TurnSpeed=30.0f;
 	private float RemberTurnSpeed;
@@ -54,9 +55,11 @@ public class MyImage : MonoBehaviour {
 			Turn = true;
 			StopTime=0.0f;
 			CanTurn = false;
+			//AddDelegateImage ();
 		}
 
 		if (Turn) {
+			//AddDelegateImage ();
 			StartCoroutine (IRunImage ());
 			if ((RunTime < StopTime) || (bStop==true) ) {
 				bStop = false;
@@ -64,7 +67,7 @@ public class MyImage : MonoBehaviour {
 				Turn = false;
 				//NowStop();
 				GameControal.getControal ().StopOneTurn ();
-
+				//DelDelegate ();
 				//Buttom.GetComponent<GameControal> ().StopOneTurn ();
 			}
 	
@@ -72,7 +75,13 @@ public class MyImage : MonoBehaviour {
 
 		}
 	}
-		
+	public void AddDelegateImage(){
+		//ImageRun+=RandImage();
+	}
+
+	void DelDelegate(){
+		//ImageRun -= RandImage;
+	}
 
 	public void NowStop(){
 		//StopImagePos ();

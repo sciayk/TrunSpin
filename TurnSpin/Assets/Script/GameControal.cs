@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using LitJson;
 using System.IO;
 public class GameControal : MonoBehaviour {
-
+	
 	private static GameControal mGameConcroal;
 
 	public static GameControal getControal(){
